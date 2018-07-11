@@ -1,0 +1,13 @@
+.block {
+    display: block;
+    width: 80%;
+}
+
+.center {
+    margin: 20px auto;
+    padding: 8px;
+}
+
+.line--center {
+    text-align: center;
+}
