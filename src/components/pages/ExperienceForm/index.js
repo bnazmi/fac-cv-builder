@@ -18,7 +18,9 @@ class ExperienceForm extends Component {
           <Input inputtype="text" type="date" name="to-experince "className="block center" />
           <Input placeholder="Short Bio!" inputtype="textarea" name="experince-description" className="block center" />
           <Button value="cancel" className="block center" />
-          <Button value="save" className="block center" />
+          <Button value="save" className="block center" onClick={
+          this.props.next
+        } />
           <hr />
       </section>
     );

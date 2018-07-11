@@ -14,7 +14,9 @@ class EducationForm extends Component {
           <Input inputtype="text" type="date" name="to-education" className="block center" />
           <Input placeholder="Short Bio!" inputtype="textarea" name="education-description" className="block center" />
           <Button value="cancel" className="block center" />
-          <Button value="next" className="block center" />
+          <Button value="next" className="block center" onClick={
+          this.props.next
+        } />
           <hr />
       </section>
     );

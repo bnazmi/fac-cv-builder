@@ -14,7 +14,9 @@ class SocialForm extends Component {
           <Input placeholder="Upwork Link" inputtype="text" type="text" name="skills" className="block center" />
           <Input placeholder="Twitter Link" inputtype="text" type="text" name="skills" className="block center" />
           <Button value="cancel" className="block center" />
-          <Button value="save" className="block center" />
+          <Button value="save" className="block center" onClick={
+          this.props.next
+        } />
           <hr />
       </section>
     );

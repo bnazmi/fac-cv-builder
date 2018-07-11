@@ -12,7 +12,9 @@ class ProtfolioForm extends Component {
         <Input inputtype="select" name="country" className="block center" />
         <Input placeholder="Project URL" inputtype="text" type="text" name="project-url" className="block center" />
         <Input placeholder="project-skills" inputtype="textarea" name="project-skills" className="block center"  />
-        <Button value="save" className="block center" />
+        <Button value="save" className="block center" onClick={
+          this.props.next
+        } />
         <Button value="cancel" className="block center" />
         <hr />
       </section>

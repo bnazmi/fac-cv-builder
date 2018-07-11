@@ -10,11 +10,33 @@ import { SocialForm } from "./components/pages/SocialForm/";
 
 class App extends Component {
 
+  classactive=(e)=>{
+     const pageactive = this.state.progress.map((item) => {
+      if(item.activepage ){ 
+        return "active"
+      }
+      else {
+        return "disable"
+      }
+    })
+    return pageactive;
+    
+  }
   next=(e)=>{
     e.preventDefault();
     const newProg = this.state.progress.map((item, index) => {
-      if (this.state.page >= index) item.active = true;
-      else item.active = false;
+      if(this.state.page >= index) {
+         item.active = true;
+         item.activepage = false;
+         if(this.state.page === index) {
+           item.activepage=true;
+         }
+
+      } 
+    
+      else{
+         item.active = false;
+      } 
       return item;
     })
     this.setState({
@@ -28,33 +50,38 @@ class App extends Component {
     progress: [
       {
         name: "About",
-        active: true
+        active: true ,
+        activepage : true
       },
       {
         name: "Education",
-        active: false
+        active: false,
+        activepage : false
       },
       {
         name: "Experience",
-        active: false
+        active: false,
+        activepage : false
       },
       {
         name:"Skills",
-        active:false
+        active:false,
+        activepage : false
       },
       {
         name:"Protfolio",
-        active:false
+        active:false,
+        activepage : false
       },
       {
         name:"Social",
-        active:false
+        active:false,
+        activepage : false
       }
     ]
   };
 
   render() {
-    console.log(this.state);
     return (
       <form>
         <ul id="progressbar">
@@ -69,12 +96,12 @@ class App extends Component {
           })
         }
         </ul>
-        <About className="active" id="about" next={this.next} onChange={this.handleChange}/>
-        <EducationForm className="disable" id="education" next={this.next}/>
-        <ExperienceForm className="disable" id="experience" />
-        <SkillsForm className="disable" id="skills" />
-        <ProtfolioForm className="disable" id="protfolio" />
-        <SocialForm className="disable active" id="social" />
+        <About className={this.classactive()[0]} id="about" next={this.next} onChange={this.handleChange}/>
+        <EducationForm className={this.classactive()[1]} id="education" next={this.next}/>
+        <ExperienceForm className={this.classactive()[2]} id="experience" next={this.next} />
+        <SkillsForm className={this.classactive()[3]}id="skills" next={this.next} />
+        <ProtfolioForm className={this.classactive()[4]} id="protfolio" next={this.next} />
+        <SocialForm className={this.classactive()[5]} id="social" next={this.next} />
       </form>
     );
   }
