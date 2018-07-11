@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component , Fragment } from "react";
 import "./App.css";
 import { Progress } from "./components/pages/Progress/";
+import { Header } from "./components/forms/Header/";
 import { About } from "./components/pages/About/";
 import { EducationForm } from "./components/pages/EducationForm/";
 import { ExperienceForm } from "./components/pages/ExperienceForm/";
@@ -21,6 +22,30 @@ class App extends Component {
     })
     return pageactive;
     
+  }
+
+  previous=(e)=>{
+    e.preventDefault();
+    const newProg = this.state.progress.map((item, index) => {
+      if(this.state.page >= index) {
+         item.active = false;
+         item.activepage = false;
+         if(this.state.page === index) {
+           item.activepage=false;
+         }
+
+      } 
+    
+      else{
+         item.active = true;
+      } 
+      return item;
+    })
+    this.setState({
+      ...this.state,
+      page: ++this.state.page,
+      progress: newProg
+    });
   }
   next=(e)=>{
     e.preventDefault();
@@ -83,6 +108,9 @@ class App extends Component {
 
   render() {
     return (
+      <Fragment >
+        <Header  domain="cvbuilder.co"  /> 
+      
       <form>
         <ul id="progressbar">
         {
@@ -96,13 +124,14 @@ class App extends Component {
           })
         }
         </ul>
-        <About className={this.classactive()[0]} id="about" next={this.next} onChange={this.handleChange}/>
-        <EducationForm className={this.classactive()[1]} id="education" next={this.next}/>
+        <About className={this.classactive()[0]} id="about" next={this.next} />
+        <EducationForm className={this.classactive()[1]} id="education" next={this.next} previous={this.previous} />
         <ExperienceForm className={this.classactive()[2]} id="experience" next={this.next} />
         <SkillsForm className={this.classactive()[3]}id="skills" next={this.next} />
         <ProtfolioForm className={this.classactive()[4]} id="protfolio" next={this.next} />
         <SocialForm className={this.classactive()[5]} id="social" next={this.next} />
       </form>
+      </Fragment>
     );
   }
 }
