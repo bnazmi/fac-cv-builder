@@ -9,7 +9,22 @@ import { ProtfolioForm } from "./components/pages/ProtfolioForm/";
 import { SocialForm } from "./components/pages/SocialForm/";
 
 class App extends Component {
+
+  next=(e)=>{
+    e.preventDefault();
+    const newProg = this.state.progress.map((item, index) => {
+      if (this.state.page >= index) item.active = true;
+      else item.active = false;
+      return item;
+    })
+    this.setState({
+      ...this.state,
+      page: ++this.state.page,
+      progress: newProg
+    });
+  }
   state = {
+    page: 1,
     progress: [
       {
         name: "About",
@@ -39,20 +54,23 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <form>
         <ul id="progressbar">
         {
           this.state.progress.map((item,index)=>{
-          if(item.active ){ return <Progress className="active" key={index} name={item.name} /> }
+          if(item.active ){ 
+            return <Progress className="active" key={index} name={item.name} /> 
+          }
           else {
             return <Progress className="" key={index} name={item.name} />
           }
           })
         }
         </ul>
-        <About className="active" id="about" />
-        <EducationForm className="disable" id="education" />
+        <About className="active" id="about" next={this.next} onChange={this.handleChange}/>
+        <EducationForm className="disable" id="education" next={this.next}/>
         <ExperienceForm className="disable" id="experience" />
         <SkillsForm className="disable" id="skills" />
         <ProtfolioForm className="disable" id="protfolio" />

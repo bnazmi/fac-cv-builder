@@ -4,6 +4,7 @@ import { Button } from "../../forms/Button";
 import { Input } from "../../forms/Input";
 
 class About extends Component {
+  
   render() {
     return (
       <section className={this.props.className}  id={this.props.id}>
@@ -17,7 +18,9 @@ class About extends Component {
         <Input inputtype="text" type="radio" name="freelancer" className=" center" />
         <Input inputtype="lable" content="Are you freelancer" className=" line--center" />
 
-        <Button value="next" className="block center" />
+        <Button value="next" className="block center" onClick={
+          this.props.next
+        }/>
         <hr />
       </section>
     );
