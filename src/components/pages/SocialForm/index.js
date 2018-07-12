@@ -9,10 +9,10 @@ class SocialForm extends Component {
     return (
       <section className={this.props.className} id={this.props.id}>
           <Input inputtype="lable" content="Add your Social Links" className="block" />
-          <Input placeholder="Github Link" inputtype="text" type="text" name="skills" className="block center" />
-          <Input placeholder="Linked-In" inputtype="text" type="text" name="skills" className="block center" />
-          <Input placeholder="Upwork Link" inputtype="text" type="text" name="skills" className="block center" />
-          <Input placeholder="Twitter Link" inputtype="text" type="text" name="skills" className="block center" />
+          <Input placeholder="Github Link" name="github" inputtype="text" type="text"  className="block center" />
+          <Input placeholder="Linked-In" name="linkedIn" inputtype="text" type="text"  className="block center" />
+          <Input placeholder="Upwork Link" name="upWork" inputtype="text" type="text"  className="block center" />
+          <Input placeholder="Twitter Link" name="twitter" inputtype="text" type="text"  className="block center" />
           <Button value="cancel" className="block center" />
           <Button value="save" className="block center" onClick={
           this.props.next

@@ -1,19 +1,58 @@
 import React, { Component , Fragment } from "react";
-import "./App.css";
-import { Progress } from "./components/pages/Progress/";
-import { Header } from "./components/forms/Header/";
-import { About } from "./components/pages/About/";
-import { EducationForm } from "./components/pages/EducationForm/";
-import { ExperienceForm } from "./components/pages/ExperienceForm/";
-import { SkillsForm } from "./components/pages/SkillsForm/";
-import { ProtfolioForm } from "./components/pages/ProtfolioForm/";
-import { SocialForm } from "./components/pages/SocialForm/";
-
+// import "./App.css";
+// import { Progress } from "./components/pages/Progress/";
+// import { Header } from "./components/forms/Header/";
+// import { About } from "./components/pages/About/";
+// import { EducationForm } from "./components/pages/EducationForm/";
+// import { ExperienceForm } from "./components/pages/ExperienceForm/";
+// import { SkillsForm } from "./components/pages/SkillsForm/";
+// import { ProtfolioForm } from "./components/pages/ProtfolioForm/";
+// import { SocialForm } from "./components/pages/SocialForm/";
+ 
+   import { Header } from "./components/cv/Header";
+   import { About } from "./components/cv/About";
+   import { Skill} from "./components/cv/Skill";
+   import { Experince } from "./components/cv/Experince";
+   import { Education } from "./components/cv/Education";
+   import { Protofolio } from "./components/cv/Protofolio";
+   import {Footer } from "./components/cv/Footer"
 class App extends Component {
+  onClick = (ev) => {
+    ev.preventDefault();
+    const { name, bio, file, country, address, email, phone, educationSchool, fromEducation, toEducation, educationDescription, experinceCompany, experienceCountry, city, titleExperince, fromExperince, toExperince, experinceDescription, skills, projectTitle, projectOverview, portfolioCountry, projectUrl, projectSkills } = ev.currentTarget;
+
+     const newObject = {
+      name: name.value,
+      bio: bio.value,
+      file: file.value,
+      country: country.value,
+      address: address.value,
+      email: email.value,
+      phone: phone.value,
+      educationSchool: educationSchool.value,
+      fromEducation: fromEducation.value,
+      toEducation: toEducation.value,
+      educationDescription: educationDescription.value,
+      experinceCompany: experinceCompany.value,
+      experienceCountry: country.value,
+      city: city.value,
+      titleExperince: titleExperince.value,
+      fromExperince: fromExperince.value,
+      // toExperince, this returns undefined
+      experinceDescription: experinceDescription.value,
+      skills: skills.value,
+      projectTitle: projectTitle.value,
+      projectOverview: projectOverview.value,
+      portfolioCountry: portfolioCountry.value,
+      projectUrl: projectUrl.value,
+      projectSkills: projectSkills.value,
+    }
+    console.log(newObject);
+  }
 
   classactive=(e)=>{
      const pageactive = this.state.progress.map((item) => {
-      if(item.activepage ){ 
+      if(item.activepage ){
         return "active"
       }
       else {
@@ -21,7 +60,7 @@ class App extends Component {
       }
     })
     return pageactive;
-    
+
   }
 
   previous=(e)=>{
@@ -57,11 +96,11 @@ class App extends Component {
            item.activepage=true;
          }
 
-      } 
-    
+      }
+
       else{
          item.active = false;
-      } 
+      }
       return item;
     })
     this.setState({
@@ -107,30 +146,40 @@ class App extends Component {
   };
 
   render() {
+    // return (
+    //   <Fragment >
+    //     <Header  domain="cvbuilder.co"  />
+    //   <form onClick={this.onClick}>
+    //     <ul id="progressbar">
+    //     {
+    //       this.state.progress.map((item,index)=>{
+    //       if(item.active ){
+    //         return <Progress className="active" key={index} name={item.name} />
+    //       }
+    //       else {
+    //         return <Progress className="" key={index} name={item.name} />
+    //       }
+    //       })
+    //     }
+    //     </ul>
+    //     <About className={this.classactive()[0]} id="about" next={this.next} />
+    //     <EducationForm className={this.classactive()[1]} id="education" next={this.next} previous={this.previous} />
+    //     <ExperienceForm className={this.classactive()[2]} id="experience" next={this.next} />
+    //     <SkillsForm className={this.classactive()[3]}id="skills" next={this.next} />
+    //     <ProtfolioForm className={this.classactive()[4]} id="protfolio" next={this.next} />
+    //     <SocialForm className={this.classactive()[5]} id="social" next={this.next} />
+    //   </form>
+    //   </Fragment>
+    // );
     return (
       <Fragment >
-        <Header  domain="cvbuilder.co"  /> 
-      
-      <form>
-        <ul id="progressbar">
-        {
-          this.state.progress.map((item,index)=>{
-          if(item.active ){ 
-            return <Progress className="active" key={index} name={item.name} /> 
-          }
-          else {
-            return <Progress className="" key={index} name={item.name} />
-          }
-          })
-        }
-        </ul>
-        <About className={this.classactive()[0]} id="about" next={this.next} />
-        <EducationForm className={this.classactive()[1]} id="education" next={this.next} previous={this.previous} />
-        <ExperienceForm className={this.classactive()[2]} id="experience" next={this.next} />
-        <SkillsForm className={this.classactive()[3]}id="skills" next={this.next} />
-        <ProtfolioForm className={this.classactive()[4]} id="protfolio" next={this.next} />
-        <SocialForm className={this.classactive()[5]} id="social" next={this.next} />
-      </form>
+        <Header domain="cvbuilder.co" />
+        <About name="Abdullah Azmi" bio="web Devloper" image="./../public/me.jpg" />
+        <Skill />
+        <Experince />
+        <Education />
+        <Protofolio />
+        <Footer />
       </Fragment>
     );
   }
